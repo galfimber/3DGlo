@@ -21,18 +21,24 @@ const one = (deadline) => {
     };
   };
 
+  const correctTime = (time) => {
+    for (let key in time) {
+      if (time[key] !== "timeRemaining") {
+        if (time[key] < 10) {
+          time[key] = "0" + time[key];
+        }
+      }
+    }
+  };
+
   const updateClock = () => {
     let getTime = getTimeRemainig();
 
     if (getTime.timeRemaining <= 0) {
       clearInterval(idInterval);
     } else {
-      for (let key in getTime) {
-        if (getTime[key] !== "timeRemaining") {
-          if (getTime[key] < 10 && getTime[key] >= 0) {
-            getTime[key] = "0" + getTime[key];
-          }
-        }
+      if (getTime.hours < 10 || getTime.minutes < 10 || getTime.seconds < 10) {
+        correctTime(getTime);
       }
 
       timerHours.textContent = getTime.hours;
