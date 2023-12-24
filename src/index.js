@@ -1,5 +1,7 @@
-import one from "./modules/one";
-import two from "./modules/two";
+import timer from "./modules/timer";
+import menu from "./modules/menu";
+import popup from "./modules/popup";
 
-one("23 december 2023");
-two();
+timer("25 december 2023");
+menu();
+popup();
