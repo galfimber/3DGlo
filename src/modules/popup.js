@@ -40,11 +40,16 @@ const popup = () => {
     });
   });
 
-  popupClose.addEventListener("click", () => {
-    if (document.documentElement.clientHeight > 768) {
-      popupHide();
-    } else {
-      popup.style.display = "none";
+  popup.addEventListener("click", (e) => {
+    if (
+      !e.target.closest(".popup-content") ||
+      e.target.classList.contains("popup-close")
+    ) {
+      if (document.documentElement.clientHeight > 768) {
+        popupHide();
+      } else {
+        popup.style.display = "none";
+      }
     }
   });
 };
