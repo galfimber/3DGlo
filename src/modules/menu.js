@@ -1,17 +1,25 @@
 "use strict";
 
 const menu = () => {
-  const menuBtn = document.querySelector(".menu");
+  // const menuBtn = document.querySelector(".menu");
   const menu = document.querySelector("menu");
 
   const handleMenu = () => {
     menu.classList.toggle("active-menu");
   };
 
-  menuBtn.addEventListener("click", handleMenu);
+  // menuBtn.addEventListener("click", handleMenu);
 
-  menu.addEventListener("click", (e) => {
-    if (e.target.closest("ul>li>a") || e.target.closest(".close-btn")) {
+  // menu.addEventListener("click", (e) => {
+  //   if (e.target.closest("ul>li>a") || e.target.closest(".close-btn")) {
+  //     handleMenu();
+  //   }
+  // });
+
+  document.addEventListener("click", (e) => {
+    if (e.target.closest(".menu")) {
+      handleMenu();
+    } else if (e.target.closest("ul>li>a") || e.target.closest(".close-btn")) {
       handleMenu();
     }
   });
