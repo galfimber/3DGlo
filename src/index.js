@@ -6,6 +6,7 @@ import reg from "./modules/reg";
 import tabs from "./modules/tabs";
 import slider from "./modules/slider";
 import calc from "./modules/calc";
+import sendForm from "./modules/sendForm";
 
 timer("25 december 2023");
 menu();
@@ -14,4 +15,31 @@ scroll();
 reg();
 tabs();
 slider();
-calc()
+calc();
+sendForm({
+  formId: "form1",
+  someElem: [
+    {
+      type: "block",
+      id: "total",
+    },
+  ],
+});
+sendForm({
+    formId: "form2",
+    someElem: [
+      {
+        type: "block",
+        id: "total",
+      },
+    ],
+  });
+  sendForm({
+    formId: "form3",
+    someElem: [
+      {
+        type: "block",
+        id: "total",
+      },
+    ],
+  });

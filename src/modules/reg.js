@@ -20,10 +20,10 @@ const reg = () => {
           input.value = input.value.replace(/[^a-zA-Z0-9\@\-\_\.\!\~\*\']/g, "");
         }
         if (input.type === "tel") {
-            input.value = input.value.replace(/[^0-9\(\)\-]/g, "");
+            input.value = input.value.replace(/[^0-9\(\)\-\+]/g, "");
           }
         if (input.type === "text" || input.placeholder === "Ваше сообщение") {
-          input.value = input.value.replace(/[^а-яА-я\-\ ]/g, "");
+          input.value = input.value.replace(/[^а-яА-я0-9\-\,\.\!\?\ ]/g, "");
         }
       });
     });
