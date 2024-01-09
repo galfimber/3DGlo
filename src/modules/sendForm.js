@@ -4,6 +4,8 @@ const sendForm = ({ formId, someElem = [] }) => {
   const loadText = "Загрузка...";
   const errorText = "Ошибка...";
   const successText = "Спасибо! Наш менеджер с вами свяжется";
+  const errorName = "Не менее 2 символов в имени";
+  const errorTel = "Не менее 11 символов в имени";
 
   const sendData = (data) => {
     return fetch("https://jsonplaceholder.typicode.com/posts", {
@@ -23,9 +25,25 @@ const sendForm = ({ formId, someElem = [] }) => {
     statusBlock.textContent = loadText;
     form.append(statusBlock);
 
-    formData.forEach((val, key) => {
-      formBody[key] = val;
-    });
+    //console.log(val);
+    //console.log(key);
+    try {
+      formData.forEach((val, key) => {
+        if (key === "user_name" && val.length < 2) {
+          //console.log("Не менее 2 символов");
+          statusBlock.textContent = errorName;
+          throw new Error("Не менее 2 символов");
+        } else if (key === "user_phone" && val.length < 11) {
+          //console.log("Не менее 11 символов");
+          statusBlock.textContent = errorTel;
+          throw new Error("Не менее 11 символов");
+        }
+        formBody[key] = val;
+      });
+    } catch (error) {
+      //console.log(error.message);
+      return false;
+    }
 
     someElem.forEach((elem) => {
       const element = document.getElementById(elem.id);
@@ -40,16 +58,20 @@ const sendForm = ({ formId, someElem = [] }) => {
     console.log("submit");
 
     sendData(formBody)
-      .then((data) => {
+      .then(async (data) => {
         statusBlock.textContent = successText;
-
         formElements.forEach((input) => {
           input.value = "";
         });
+        await new Promise((resolve, reject) => setTimeout(resolve, 5000));
+
+        statusBlock.textContent = "";
       })
       .catch((error) => {
         statusBlock.textContent = errorText;
       });
+
+    return true;
   };
 
   try {
@@ -60,7 +82,9 @@ const sendForm = ({ formId, someElem = [] }) => {
     form.addEventListener("submit", (e) => {
       e.preventDefault();
 
-      submitForm();
+      if (!submitForm()) {
+        throw new Error("Недостаточно символов в имени или номере телефона");
+      }
     });
   } catch (error) {
     console.log(error.message);

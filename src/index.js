@@ -8,7 +8,7 @@ import slider from "./modules/slider";
 import calc from "./modules/calc";
 import sendForm from "./modules/sendForm";
 
-timer("25 december 2023");
+timer("13 january 2024");
 menu();
 popup();
 scroll();
