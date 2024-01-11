@@ -36,8 +36,10 @@ const popup = () => {
       popup.style.display = "block";
       if (document.documentElement.clientHeight > 768) {
         //popupShow();
+        //console.log("big");
         animate("popupShow", popup, 0);
       } else {
+        //console.log("small");
         popup.style.opacity = `1`;
       }
     });

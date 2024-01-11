@@ -1,5 +1,5 @@
 const animate = (func, popup, count) => {
-  console.log(count);
+  //console.log(count);
 
   const popupShow = () => {
     count += 0.1;
